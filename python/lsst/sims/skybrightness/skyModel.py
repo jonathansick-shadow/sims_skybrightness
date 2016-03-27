@@ -2,7 +2,7 @@ import numpy as np
 import ephem
 from lsst.sims.utils import haversine, _raDecFromAltAz, _altAzPaFromRaDec, Site, ObservationMetaData, calcLmstLast
 import warnings
-from lsst.sims.skybrightness.utils import wrapRA,  mjd2djd
+from lsst.sims.skybrightness.utils import wrapRA, mjd2djd
 from .interpComponents import ScatteredStar, Airglow, LowerAtm, UpperAtm, MergedSpec, TwilightInterp, MoonInterp, ZodiacalInterp
 from lsst.sims.photUtils import Sed
 
@@ -104,9 +104,9 @@ def stupidFast_altAz2RaDec(alt, az, lat, lon, mjd):
 class SkyModel(object):
 
     def __init__(self, observatory='LSST',
-                 twilight=True, zodiacal=True,  moon=True,
+                 twilight=True, zodiacal=True, moon=True,
                  airglow=True, lowerAtm=False, upperAtm=False, scatteredStar=False,
-                 mergedSpec=True, mags=False,  preciseAltAz=False):
+                 mergedSpec=True, mags=False, preciseAltAz=False):
         """
         Instatiate the SkyModel. This loads all the required template spectra/magnitudes
         that will be used for interpolation.
@@ -195,7 +195,7 @@ class SkyModel(object):
         # Note that observing conditions have not been set
         self.paramsSet = False
 
-    def setComponents(self, twilight=True, zodiacal=True,  moon=True,
+    def setComponents(self, twilight=True, zodiacal=True, moon=True,
                       airglow=True, lowerAtm=False, upperAtm=False, scatteredStar=False,
                       mergedSpec=True):
         """
@@ -455,7 +455,8 @@ class SkyModel(object):
         """
 
         if not self.paramsSet:
-            raise ValueError('No parameters have been set. Must run setRaDecMjd or setParams before running interpSky.')
+            raise ValueError(
+                'No parameters have been set. Must run setRaDecMjd or setParams before running interpSky.')
 
         # set up array to hold the resulting spectra for each ra, dec point.
         self.spec = np.zeros((self.npts, self.npix), dtype=float)

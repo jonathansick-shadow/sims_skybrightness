@@ -22,13 +22,13 @@ class TestSkyModel(unittest.TestCase):
         same result if they are computed independently
         """
 
-        sky1 = sb.SkyModel(twilight=False, zodiacal=False,  moon=False,
+        sky1 = sb.SkyModel(twilight=False, zodiacal=False, moon=False,
                            lowerAtm=False, upperAtm=False,
                            airglow=False, scatteredStar=False,
                            mergedSpec=True)
         sky1.setRaDecMjd([36.], [-68.], 49353.18, degrees=True)
 
-        sky2 = sb.SkyModel(twilight=False, zodiacal=False,  moon=False,
+        sky2 = sb.SkyModel(twilight=False, zodiacal=False, moon=False,
                            lowerAtm=True, upperAtm=True,
                            airglow=False, scatteredStar=True,
                            mergedSpec=False)
